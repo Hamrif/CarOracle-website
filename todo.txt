@@ -1,0 +1,30 @@
+In this website what we are doing :
+presenting the product
+and with that engineering decisions and process.
+
+things which are to be added to the website as per instructions and rubric:
+
+1. Demo video.
+2. make a website folder and tell in readme how to run the website.(No separate submission is required)
+
+
+3.Target users
+4.Technical skills gained by each member
+5.development reflection
+Provide a structured reflection on your development process.
+
+At minimum, include:
+
+one major issue identified in a previous iteration
+what you changed in response
+evidence of improvement
+You should also address several of the following:
+
+key architectural decisions and tradeoffs
+what worked well
+what did not work well
+how your system evolved from Iteration 0
+distribution of effort across features/layers
+testing strategy and its effectiveness
+remaining technical debt or limitations
+what you would do differently if starting over

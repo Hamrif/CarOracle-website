@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CarOracle — COMP 3350 · Ctrl Alt Defeat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;500;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+ <nav>
+    <a class="nav-logo" href="#">CarOracle</a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#users">Target Users</a></li>
+      <li><a href="#demo">Demo</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto" src="bg.mp4"></video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">COMP 3350 · Summer 2026 · Ctrl Alt Defeat</p>
+      <h1 class="hero-title">Car<span>Oracle</span></h1>
+      <p class="hero-sub">A JavaFX vehicle recommendation and comparison platform designed for students and everyday commuters.</p>
+      <div class="hero-pills">
+        <span class="pill">Java 21</span>
+        <span class="pill">JavaFX</span>
+        <span class="pill">SQLite</span>
+        <span class="pill">Gradle</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="overview" class="section-pad">
+    <div class="container">
+      <p class="section-label">Project Overview</p>
+      <h2 class="section-title">Vision Statement</h2>
+      <div class="overview-grid">
+        <p class="section-body">
+CarOracle is a vehicle recommendation tool designed to make car buying easier for 
+  everyday consumers. Many people know what they want from a car, such as staying within a budget, 
+  saving money on fuel, having enough space for passengers, or finding a reliable vehicle for daily commuting.
+   However, they often struggle to compare vehicles because traditional automotive websites and dealerships focus 
+   heavily on technical specifications and industry terminology that can be difficult to understand.<br><br>
+
+
+Our goal is to bridge the gap between real-world needs and vehicle data. Instead of requiring users to evaluate 
+  complex details such as horsepower, engine configurations, or cargo measurements, CarOracle allows them to focus 
+  on what matters most to their lifestyle. Through a simple and intuitive interface, users can indicate their 
+  priorities and preferences, and the application analyzes available vehicle options to provide personalized
+   recommendations.<br><br>
+
+CarOracle is built for students, first-time buyers, commuters, and anyone who wants a practical and reliable 
+  vehicle without spending hours researching automotive specifications. We believe that buying a car should be a 
+  straightforward and informed experience rather than an overwhelming one.<br><br>
+Our vision is to empower consumers to make confident purchasing decisions based on their actual needs. 
+  By simplifying the vehicle selection process and presenting clear, data-driven recommendations, CarOracle
+   helps users avoid unnecessary costs, reduce uncertainty, and find vehicles that truly fit their lifestyle. 
+   We aim to transform car buying from a confusing and stressful process into one that is simple, transparent, 
+   and user-focused.<br><br>
+
+
+Furthermore, the system must objectively reduce catalog overwhelm and save user’s time. The application is successful when it processes a pre-loaded catalog of vehicles and accurately narrows it to shortlist using user-defined lifestyle parameters. To prove it eliminates decision fatigue, users must be able to input their slider preferences, generate a matched list, and launch a head-to-head comparison.
+
+Finally, we measure success by how reliably the app listens to the user's limits. The app is successful when 100% of the recommended cars respect the user's limits. For example, the app must never show a car that goes over the user's declared maximum budget. This strict filtering guarantees that buyers are only looking at practical options that fit their wallet and their daily life.
+        </p>
+        <ul class="features-list">
+          <li class="feature-item">
+            <div class="feature-icon">🎯</div>
+            <div>
+              <p class="feature-name">Personalized Match Ranking</p>
+              <p class="feature-desc">Set priority sliders and click "Find My Match." The app instantly scores the entire catalogue and returns a sorted list with a clear Match Percentage next to each car.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">🔍</div>
+            <div>
+              <p class="feature-name">Interactive Search Filters</p>
+              <p class="feature-desc">Express needs visually — set Fuel Efficiency to 80%, Cargo Space to 20% — and get a matching list without typing a single spec or number.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">⚖️</div>
+            <div>
+              <p class="feature-name">Head-to-Head Comparison</p>
+              <p class="feature-desc">Select any two matched vehicles and compare side by side. Spec differences are highlighted so you can make a final, confident choice between your top options.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">🔎</div>
+            <div>
+              <p class="feature-name">Vehicle Detail Inspector</p>
+              <p class="feature-desc">Click any car to see exactly why it ranked where it did — a visual breakdown shows how its price and mileage align with the sliders you set, making every recommendation transparent.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">📚</div>
+            <div>
+              <p class="feature-name">Pre-loaded Vehicle Catalogue</p>
+              <p class="feature-desc">Browse a built-in offline catalogue of diverse vehicles sorted by brand — no internet or search query needed. Perfect for users who just want to explore what's available.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">❤️</div>
+            <div>
+              <p class="feature-name">Favourite Cars</p>
+              <p class="feature-desc">Save vehicles to your profile with a single tap. Build a personal shortlist stored persistently to your account so you can revisit your top picks anytime.</p>
+            </div>
+          </li>
+          <li class="feature-item">
+            <div class="feature-icon">🔐</div>
+            <div>
+              <p class="feature-name">Log-in Service</p>
+              <p class="feature-desc">Create an account and log in securely with email and password. Credentials are authenticated and unlock personalized features like saved favourites and preference history.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+
+   <!-- TARGET USERS -->
+  <section id="users" class="section-pad" style="background: var(--mid);">
+    <div class="container">
+      <p class="section-label">Target Users</p>
+      <h2 class="section-title">Who It's For</h2>
+      <p class="section-body">CarOracle is built for people who know what they need from a car but not how to find it. Three core user groups shaped every design decision.</p>
+
+      <div class="users-grid">
+
+        <div class="user-card">
+          <div class="user-icon">🎓</div>
+          <p class="user-title">University Students</p>
+          <p class="user-body">First-time buyers on a tight budget who need a reliable daily driver for commuting to campus. They want a car that fits their wallet and their life </p>
+          <div class="user-needs">
+            <span class="user-need">Strict budget ceiling</span>
+            <span class="user-need">Fuel efficiency</span>
+            <span class="user-need">Low maintenance</span>
+          </div>
+        </div>
+
+        <div class="user-card">
+          <div class="user-icon">🚗</div>
+          <p class="user-title">Everyday Commuters</p>
+          <p class="user-body">Pragmatic buyers who drive to work every day and need something dependable. They care about running costs and reliability but feel completely lost when dealerships start quoting torque figures and wheelbase dimensions.</p>
+          <div class="user-needs">
+            <span class="user-need">Reliability</span>
+            <span class="user-need">Running costs</span>
+            <span class="user-need">Practical space</span>
+          </div>
+        </div>
+
+        <div class="user-card">
+          <div class="user-icon">🏠</div>
+          <p class="user-title">Practical Car Buyers</p>
+          <p class="user-body">People making one of the biggest financial purchases of their lives who don't want to rely entirely on a salesperson's pitch. They need clear, data-backed recommendations based on their actual lifestyle </p>
+          <div class="user-needs">
+            <span class="user-need">Transparent recommendations</span>
+            <span class="user-need">No jargon</span>
+            <span class="user-need">Confident decisions</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule" />
+
+  <section id="demo" class="demo-section section-pad">
+    <div class="container">
+      <p class="section-label">Product Demonstration</p>
+      <h2 class="section-title">See It in Action</h2>
+      <div class="demo-wrapper">
+        <video class="demo-video" controls>
+          <source src="demo.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p class="demo-caption">Full walkthrough of the CarOracle system.</p>
+    </div>
+  </section>
+
+  <section id="team" class="section-pad">
+    <div class="container">
+      <p class="section-label">Team · Ctrl Alt Defeat</p>
+      <h2 class="section-title">Who Built It</h2>
+      <div class="team-grid">
+        
+        <div class="team-card">
+          <div class="team-initials">MA</div>
+          <p class="team-name">Mohammad Shaheen Alam</p>
+          <p class="team-role">Persistence Layer</p>
+          <div class="team-skills">
+            <span class="team-skill">SQLite integration</span>
+            <span class="team-skill">DB schema design</span>
+          </div>
+          <div class="team-learned">
+            <span class="learned-label">Skills Gained:</span>
+            <p class="learned-text"></p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-initials">KW</div>
+          <p class="team-name">Kai Werry-Evans</p>
+          <p class="team-role">Domain · Business · Application</p>
+          <div class="team-skills">
+            <span class="team-skill">Domain model design</span>
+            <span class="team-skill">Business layer</span>
+          </div>
+          <div class="team-learned">
+            <span class="learned-label">Skills Gained:</span>
+            <p class="learned-text">wrote first sql code and gained solid database integration skills. achieved 100% confidence in git and version control workflows after starting from scratch.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-initials">MH</div>
+          <p class="team-name">Mohammad Hasanul Murshed</p>
+          <p class="team-role">Presentation Layer</p>
+          <div class="team-skills">
+            <span class="team-skill">JavaFX</span>
+            <span class="team-skill">UI controllers</span>
+          </div>
+          <div class="team-learned">
+            <span class="learned-label">Skills Gained:</span>
+            <p class="learned-text">mastered javafx for the first time. successfully applied core software engineering principles including solid, pola, polk, and yagni to keep ui controllers lean and modular.</p>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-initials">JS</div>
+          <p class="team-name">Jatinder Sahota</p>
+          <p class="team-role">Application · GitLab CI</p>
+          <div class="team-skills">
+            <span class="team-skill">Application layer</span>
+            <span class="team-skill">GitLab standards</span>
+          </div>
+          <div class="team-learned">
+            <span class="learned-label">Skills Gained:</span>
+            <p class="learned-text"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+<!-- REFLECTION -->
+  <section id="reflection" class="section-pad">
+    <div class="container">
+      <p class="section-label">Development Reflection</p>
+      <h2 class="section-title">What Changed, What We Learned</h2>
+      <p class="section-body">An honest account of the technical decisions we made, the architectural problems we hit, and how the system evolved across three iterations.</p>
+
+      <div class="reflection-grid">
+
+        <div class="refl-card refl-wide">
+          <p class="refl-tag issue">Major Issue · Iteration 2</p>
+          <p class="refl-title">Dealbreaker Constraints Bloated UI State</p>
+          <p class="refl-body">In Iteration 2, we introduced "dealbreaker" constraints—hard limits to completely exclude a vehicle. On paper, it was a useful power feature. In practice, managing the state between continuous slider values and binary dealbreaker toggles led to unpredictable behavior. Our JavaFX controllers became bloated trying to reconcile the conflicting logic. Worse, the results page became ambiguous: users could not tell if a car was missing because it was a poor slider match or because a dealbreaker silently removed it.</p>
+        </div>
+
+        <div class="refl-card refl-wide">
+          <p class="refl-tag response">Response · Iteration 3</p>
+          <p class="refl-title">Refactoring to a Slider-Only Preference Model</p>
+          <p class="refl-body">Following the YAGNI principle, we removed dealbreakers entirely. The filter system was refactored to rely solely on the weighted preference sliders, producing a predictable ranked list. Budget filtering was preserved as our single hard constraint. This simplification drastically cleaned up our JavaFX controller logic, made the interface trustworthy, and made the underlying domain code significantly easier to test.</p>
+        </div>
+
+        <div class="refl-card">
+          <p class="refl-tag good">What Worked Well</p>
+          <p class="refl-title">Clean Architecture & Design Patterns</p>
+          <p class="refl-body">Enforcing a strict separation of concerns from day one paid off. By utilizing patterns like the Builder pattern for complex vehicle object creation and keeping the presentation layer thin, our domain logic stayed protected. Tests ran seamlessly against in-memory stubs, allowing us to swap in SQLite later without altering the business layer.</p>
+        </div>
+
+        <div class="refl-card">
+          <p class="refl-tag good">What Worked Well</p>
+          <p class="refl-title">Iterative GitLab Workflow</p>
+          <p class="refl-body">Using GitLab properly—with disciplined branching and merge request reviews—prevented merge conflicts from halting progress. It allowed teammates working on the persistence layer to push database schema changes without breaking the ongoing UI controller development happening on other branches.</p>
+        </div>
+
+        <div class="refl-card">
+          <p class="refl-tag bad">What Didn't Work</p>
+          <p class="refl-title">Feature Complexity Without Validation</p>
+          <p class="refl-body">Building the dealbreaker logic taught us a hard lesson about over-engineering. We built a complex backend feature before validating if our target demographic (students and everyday commuters) actually wanted it. It conflicted with simpler, more vital functionality.</p>
+        </div>
+
+        <div class="refl-card">
+          <p class="refl-tag decision">Architectural Decision</p>
+          <p class="refl-title">Applying SOLID Principles</p>
+          <p class="refl-body">To keep the codebase maintainable, we strictly adhered to SOLID principles, particularly the Single Responsibility Principle. Our JavaFX controllers only handle view updates and user inputs, immediately passing data off to dedicated service classes. This made tracking down UI bugs incredibly fast.</p>
+        </div>
+
+        <div class="refl-card">
+          <p class="refl-tag debt">Technical Debt</p>
+          <p class="refl-title">Remaining Limitations</p>
+          <p class="refl-body">The vehicle catalogue is currently seeded from a static CSV file; there is no admin interface to add new vehicles dynamically at runtime. Additionally, some input validation errors caught in the service layer throw exceptions rather than surfacing as user-friendly UI alerts.</p>
+        </div>
+
+        <div class="refl-card">
+          <p class="refl-tag redo">If Starting Over</p>
+          <p class="refl-title">Test-Driven UI Development</p>
+          <p class="refl-body">We would implement testing earlier for our JavaFX scenes. While our domain and persistence layers had great test coverage, manually testing the UI flows for the matching algorithm became tedious. Setting up automated UI testing from Iteration 1 would have saved significant time.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+ <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <span class="footer-logo">CarOracle</span>
+        <div class="footer-meta">
+          COMP 3350 · Final Project · Summer 2026<br/>
+          Group a01-g07 · Ctrl Alt Defeat · University of Manitoba<br/>
+          <a href="https://code.cs.umanitoba.ca/3350/summer2026/a01-g07-ctrl_alt_defeat/" style="color:var(--accent);text-decoration:none;font-size:0.72rem;letter-spacing:0.04em;">View Repository →</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
