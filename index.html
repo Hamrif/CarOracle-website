@@ -81,7 +81,7 @@
             <div class="feature-icon">🔎</div>
             <div>
               <p class="feature-name">Vehicle Detail Inspector</p>
-              <p class="feature-desc">Click any car to see exactly why it is there in the results page. A visual breakdown shows how its type, cargo space, price and mileage align with the sliders you set, making every recommendation transparent.</p>
+              <p class="feature-desc">Click see details button to see exactly why it is there in the results page. A visual breakdown shows how its type, cargo space, price and mileage align with the sliders you set, making every recommendation transparent.</p>
             </div>
           </li>
           <li class="feature-item">
@@ -95,14 +95,14 @@
             <div class="feature-icon">❤️</div>
             <div>
               <p class="feature-name">Favourite Cars</p>
-              <p class="feature-desc">Save vehicles to your profile with a single tap. Build a personal shortlist stored persistently to your account so you can revisit your top picks anytime.</p>
+              <p class="feature-desc">Save vehicles to your profile with a single click. Build a personal shortlist stored persistently to your account so you can revisit your top picks anytime.</p>
             </div>
           </li>
           <li class="feature-item">
             <div class="feature-icon">🔐</div>
             <div>
               <p class="feature-name">Log-in Service</p>
-              <p class="feature-desc">Create an account and log in securely with email and password. Credentials are authenticated and unlock personalized features like saved favourites and preference history.</p>
+              <p class="feature-desc">Create an account and log in securely with email and password. Credentials are authenticated and unlock personalized features like saved favourites .</p>
             </div>
           </li>
         </ul>
@@ -235,12 +235,14 @@
           <div class="team-skills">
             <span class="team-skill">Application layer</span>
             <span class="team-skill">GitLab standards</span>
+             <span class="team-skill">Business layer</span>
           </div>
           <div class="team-learned">
             <span class="learned-label">Skills Gained:</span>
             <ul class="learned-text">
               <li>I learned how to thoroughly perform code reviews! I've only ever received reviews, but this term gave me the opportunity to understand the process of conducting one myself. I feel confident in providing code reviews to team members!</li>
               <li>I also learned how to construct integration and E2E tests</li>
+                
             </ul>
           </div>
         </div>
@@ -266,13 +268,13 @@
         <div class="refl-card refl-wide">
           <p class="refl-tag response">Response · Iteration 3</p>
           <p class="refl-title">Refactoring to a Slider-Only Preference Model</p>
-          <p class="refl-body">Following the YAGNI principle, we removed dealbreakers entirely. The filter system was refactored to rely solely on the weighted preference sliders, producing a predictable ranked list. Budget filtering was preserved as our single hard constraint. This simplification drastically cleaned up our JavaFX controller logic, made the interface trustworthy, and made the underlying domain code significantly easier to test.</p>
+          <p class="refl-body">Following user feedback, we removed dealbreakers entirely. The filter system was refactored to rely solely on the weighted preference sliders, producing a predictable list. Instead of deciding if any constraint was firm based on the dealbreakers, all search parameters were always considered when filtering cars. This simplification drastically cleaned up our JavaFX controller logic, made the interface trustworthy, and made the underlying domain code significantly easier to test.</p>
         </div>
 
         <div class="refl-card">
           <p class="refl-tag good">What Worked Well</p>
           <p class="refl-title">Clean Architecture & Design Patterns</p>
-          <p class="refl-body">Enforcing a strict separation of concerns from day one paid off. By utilizing patterns like the Builder pattern for complex vehicle object creation and keeping the presentation layer thin, our domain logic stayed protected. Tests ran seamlessly against in-memory stubs, allowing us to swap in SQLite later without altering the business layer.</p>
+          <p class="refl-body">Striving for separation of concerns provided a strong foundation, especially within our business layer. While maintaining strict boundaries across every service was a learning curve, utilizing the Builder pattern for vehicle creation and keeping the presentation layer thin successfully protected our core domain logic. This approach allowed tests to run seamlessly against in-memory stubs, enabling our transition to SQLite without altering business rules.</p>
         </div>
 
         <div class="refl-card">
@@ -296,15 +298,23 @@
         <div class="refl-card">
           <p class="refl-tag debt">Technical Debt</p>
           <p class="refl-title">Remaining Limitations</p>
-          <p class="refl-body">The vehicle catalogue is currently seeded from a static CSV file; there is no admin interface to add new vehicles dynamically at runtime. Additionally, some input validation errors caught in the service layer throw exceptions rather than surfacing as user-friendly UI alerts.</p>
+          <p class="refl-body">Currently, the application loads the entire vehicle database into the catalogue at startup rather than retrieving data in smaller, paginated chunks as needed. While this approach may initially simplify data access, it introduces several performance and scalability concerns. In particular, loading the full dataset at once creates a significant spike in memory usage, which can negatively impact overall system performance and may slow down the user’s device, especially as the dataset continues to grow over time.
+
+<br><br>In addition, the catalogue is refreshed every time the user exits the favourites screen in order to reflect any changes to a vehicle’s favourited status. Although this ensures data consistency, it further contributes to unnecessary reloading and processing of the entire dataset, even when only a small subset of records may have changed. As the number of vehicles increases, the time required to rebuild and render the catalogue also increases proportionally, leading to a less responsive user experience.
+
+<br><br>Another limitation is that the vehicle catalogue is currently seeded from a static CSV file at application startup. This means that new vehicles cannot be added dynamically during runtime, and any updates require modifications to the source file and a restart or redeployment of the application. As a result, the system lacks flexibility and does not support administrative management of vehicle data through a dedicated interface.
+
+<br><br>Finally, input validation issues within the service layer are currently handled by throwing exceptions, which are not always translated into meaningful or user-friendly error messages in the UI. This can lead to confusing or abrupt user experiences when invalid input is encountered, rather than providing clear feedback that guides the user toward correcting their input.</p>
         </div>
 
         <div class="refl-card">
           <p class="refl-tag redo">If Starting Over</p>
           <p class="refl-title">Test-Driven UI Development</p>
-          <p class="refl-body">If we were to start the project again from scratch, our team would follow SOLID principles more strictly from the beginning to increase maintainability. Some classes took on too many responsibilities early on in the project, which made later changes harder when features, persistence and UI logic got more connected. If we were to start again we would define clearer boundaries between presentation, business and persistence layers earlier, use dependency injection consistently and avoid duplicating logic across classes. This would make the system easier to test, refactor and extend in later iterations.<br><br>
+          <p class="refl-body">If we were starting the project again from scratch, one of the biggest things we would do differently is apply the SOLID principles more consistently throughout the entire application. We did a good job keeping our business layer separated and organized, but the presentation layer gradually became responsible for too many different tasks. As the project grew and more features were added, the UI became increasingly tied to application logic and persistence, making changes and refactoring more difficult than expected.
 
-Another thing we could consider from the beginning is to deliberate and maintain project structure dilligently. Having a messy or disorganized repo really does hinder work flow, and it makes adding new features much harder.</p>
+<br><br>Looking back, we would establish clearer responsibilities for UI classes from the beginning, use dependency injection more consistently, and be more careful about avoiding duplicated logic. These changes would make the codebase easier to test, maintain, and extend as new requirements emerge.
+
+<br><br>We would also place a stronger emphasis on keeping the project structure organized from day one. Over time, even small inconsistencies in file organization can make it harder to navigate the codebase and collaborate effectively as a team. Maintaining a clean and well-structured repository would improve development efficiency and make implementing new features much smoother.</p>
         </div>
 
       </div>
