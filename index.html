@@ -263,37 +263,57 @@
         <div class="refl-card refl-wide">
           <p class="refl-tag issue">Major Issue · Iteration 2</p>
           <p class="refl-title">Dealbreaker Constraints Bloated UI State</p>
-          <p class="refl-body">In Iteration 2, we introduced "dealbreaker" constraints—hard limits to completely exclude a vehicle. On paper, it was a useful power feature. In practice, managing the state between continuous slider values and binary dealbreaker toggles led to unpredictable behavior. Our JavaFX controllers became bloated trying to reconcile the conflicting logic. Worse, the results page became ambiguous: users could not tell if a car was missing because it was a poor slider match or because a dealbreaker silently removed it.</p>
+          <p class="refl-body">In Iteration 2, we introduced "dealbreaker" constraints: hard limits to completely exclude a vehicle. The idea was to allow users to choose if some preference of theirs is non-negotiable so that results returned would certainly satisfy specific constraints while being ranked by best-fit according to the others. On paper, it was a useful power feature that gave users more control over the recommendation process. In practice, managing the state between continuous slider values and binary dealbreaker toggles led to unpredictable behavior and edge cases. Our presentation-level services became bloated trying to reconcile the conflicting logic and keep the UI synchronized. Worse, the results page became ambiguous: users could not tell if a car was missing because it was a poor slider match or because a "dealbreaker" silently removed it. This made the recommendation process feel less transparent and harder to understand</p>
         </div>
 
         <div class="refl-card refl-wide">
           <p class="refl-tag response">Response · Iteration 3</p>
           <p class="refl-title">Refactoring to a Slider-Only Preference Model</p>
-          <p class="refl-body">Following user feedback, we removed dealbreakers entirely. The filter system was refactored to rely solely on the weighted preference sliders, producing a predictable list. Instead of deciding if any constraint was firm based on the dealbreakers, all search parameters were always considered when filtering cars. This simplification drastically cleaned up our JavaFX controller logic, made the interface trustworthy, and made the underlying domain code significantly easier to test.</p>
+          <p class="refl-body">Following user feedback, we removed dealbreakers entirely. The filter system was refactored to rely solely on the weighted preference sliders, producing a more predictable and consistent set of results. Instead of distinguishing between hard constraints and preferences, all search parameters were treated uniformly and considered during the vehicle filtering process. Having the user's preferences trim the results pool is much more in-line with traditional data-filtering services, such as online shopping apps. This simplification eliminated much of the special-case logic that had accumulated around dealbreakers, drastically cleaning up our JavaFX controller code and reducing the likelihood of unexpected behaviour. It also improved transparency for users, as every vehicle could be ranked and explained using the same set of criteria. As a result, the interface felt more trustworthy, and the underlying domain code became significantly easier to test and maintain.</p>
         </div>
 
         <div class="refl-card">
           <p class="refl-tag good">What Worked Well</p>
           <p class="refl-title">Clean Architecture & Design Patterns</p>
-          <p class="refl-body">Striving for separation of concerns provided a strong foundation, especially within our business layer. While maintaining strict boundaries across every service was a learning curve, utilizing the Builder pattern for vehicle creation and keeping the presentation layer thin successfully protected our core domain logic. This approach allowed tests to run seamlessly against in-memory stubs, enabling our transition to SQLite without altering business rules.</p>
+          <p class="refl-body">Striving for separation of concerns provided a strong foundation, especially 
+            within our business layer. While maintaining strict boundaries across every service was initially
+             a learning curve, it encouraged a cleaner architecture and reduced coupling between components.
+              Utilizing the Builder pattern for vehicle creation and keeping the presentation layer thin 
+              successfully protected our core domain logic from UI and persistence concerns. 
+              This allowed us to integrate mocks and in-memory stubs into our tests, making them faster, 
+              more reliable, and independent of database state. The same architectural decisions also enabled a 
+              smooth transition to SQLite, as the persistence layer could be replaced without requiring 
+              changes to the underlying business rules.</p>
         </div>
 
         <div class="refl-card">
           <p class="refl-tag good">What Worked Well</p>
           <p class="refl-title">Iterative GitLab Workflow</p>
-          <p class="refl-body">Using GitLab properly—with disciplined branching and merge request reviews—prevented merge conflicts from halting progress. It allowed teammates working on the persistence layer to push database schema changes without breaking the ongoing UI controller development happening on other branches.</p>
+          <p class="refl-body">Using GitLab properly, with disciplined branching strategies and 
+            structured merge request reviews, helped prevent merge conflicts and bad code from halting development progress.
+             It encouraged parallel work across the team, where changes could be isolated, reviewed, and integrated 
+             incrementally rather than introduced all at once, supported by atomic commits. This was particularly 
+             valuable when multiple components were evolving simultaneously. For example, teammates working on the
+              persistence layer were able to push database schema changes and related updates without disrupting 
+              ongoing UI controller development on separate branches. As a result, integration remained stable and
+               predictable,
+             and collaboration between frontend and backend workstreams was significantly smoother.</p>
         </div>
 
         <div class="refl-card">
           <p class="refl-tag bad">What Didn't Work</p>
           <p class="refl-title">Feature Complexity Without Validation</p>
-          <p class="refl-body">Building the dealbreaker logic taught us a hard lesson about over-engineering. We built a complex backend feature before validating if our target demographic (students and everyday commuters) actually wanted it. It conflicted with simpler, more vital functionality.</p>
+          <p class="refl-body">Building the dealbreaker logic taught us a hard lesson about over-engineering. We implemented a relatively complex backend feature before properly validating whether our target demographic (students and everyday commuters) actually needed or wanted it. While the feature seemed valuable from a design perspective, it added significant complexity to the filtering system and introduced edge cases that were difficult to manage. In practice, it conflicted with simpler, more essential functionality that users relied on for quick and predictable results. This experience highlighted the importance of validating user value early and prioritising simplicity over feature richness, especially when working within constrained development timelines.</p>
         </div>
 
         <div class="refl-card">
           <p class="refl-tag decision">Architectural Decision</p>
           <p class="refl-title">Applying SOLID Principles</p>
-          <p class="refl-body">To keep the codebase maintainable, we strictly adhered to SOLID principles, particularly the Single Responsibility Principle. Our JavaFX controllers only handle view updates and user inputs, immediately passing data off to dedicated service classes. This made tracking down UI bugs incredibly fast.</p>
+          <p class="refl-body">o keep the codebase maintainable, we strictly adhered to SOLID principles, with particular emphasis on the Single Responsibility Principle. Our JavaFX controllers were limited to handling view updates and user input, delegating all processing and business logic to dedicated service classes. This separation made it significantly easier to trace and resolve UI-related bugs, as issues were isolated to clearly defined layers.
+
+          <br><br>We further reinforced SRP and the Open/Closed Principle within our comparison and state-matching engines through the use of the Strategy pattern, allowing behaviour to be extended without modifying existing logic. The persistence layer demonstrated effective use of the Interface Segregation Principle, with repository implementations divided into focused interfaces such as Readable and Writable, and further specialised by domain (e.g., vehicle and user repositories).
+
+          <br><br>Dependency injection was used extensively throughout the application to decouple components and improve testability. In addition, we employed a bootstrap and registry pattern at application startup to centralise service configuration and manage dependencies in a controlled manner. Overall, we intentionally avoided heavy use of inheritance, instead favouring composition over inheritance to build a more flexible and modular architecture.</p>
         </div>
 
         <div class="refl-card">
@@ -302,9 +322,6 @@
           <p class="refl-body">Currently, the application loads the entire vehicle database into the catalogue at startup rather than retrieving data in smaller, paginated chunks as needed. While this approach may initially simplify data access, it introduces several performance and scalability concerns. In particular, loading the full dataset at once creates a significant spike in memory usage, which can negatively impact overall system performance and may slow down the user’s device, especially as the dataset continues to grow over time.
 
 <br><br>In addition, the catalogue is refreshed every time the user exits the favourites screen in order to reflect any changes to a vehicle’s favourited status. Although this ensures data consistency, it further contributes to unnecessary reloading and processing of the entire dataset, even when only a small subset of records may have changed. As the number of vehicles increases, the time required to rebuild and render the catalogue also increases proportionally, leading to a less responsive user experience.
-
-<br><br>Another limitation is that the vehicle catalogue is currently seeded from a static CSV file at application startup. This means that new vehicles cannot be added dynamically during runtime, and any updates require modifications to the source file and a restart or redeployment of the application. As a result, the system lacks flexibility and does not support administrative management of vehicle data through a dedicated interface.
-
 <br><br>Finally, input validation issues within the service layer are currently handled by throwing exceptions, which are not always translated into meaningful or user-friendly error messages in the UI. This can lead to confusing or abrupt user experiences when invalid input is encountered, rather than providing clear feedback that guides the user toward correcting their input.</p>
         </div>
 
